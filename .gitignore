@@ -171,3 +171,6 @@ cython_debug/
 .pypirc
 
 data/*
+finetuned_model
+unsloth_compiled_cache
+model-good
