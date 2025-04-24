@@ -1,19 +1,20 @@
 import nltk
-nltk.download('wordnet')
+
+nltk.download("wordnet")
 from nltk.translate import meteor
 from nltk import word_tokenize
 from tqdm import tqdm
 from typing import List, Dict
 
 from utils.dataset import ClaimVerificationDataset
-from agents.together_api_agent import TogetherAgent
 from agents.agent import Agent
+
 
 def evaluate_claim_extraction(text_passage: str, claim: str, precision: int = 4):
     return round(meteor([word_tokenize(text_passage)], word_tokenize(claim)), precision)
 
 
-def evaluate_on_dataset(test_dataset: ClaimVerificationDataset, agent: Agent, prompt: List[Dict], limit = None):
+def evaluate_on_dataset(test_dataset: ClaimVerificationDataset, agent: Agent, prompt: List[Dict], limit=None):
     data = []
     scores = []
 
@@ -24,11 +25,7 @@ def evaluate_on_dataset(test_dataset: ClaimVerificationDataset, agent: Agent, pr
         output = agent.ask(prompt)
         meteor_score = evaluate_claim_extraction(entry["claim"], output)
 
-        data.append({
-            "ground_truth_claim": entry["claim"],
-            "generated_claim": output,
-            "meteor_score": meteor_score
-        })
+        data.append({"ground_truth_claim": entry["claim"], "generated_claim": output, "meteor_score": meteor_score})
 
         scores.append(meteor_score)
         prompt.pop()

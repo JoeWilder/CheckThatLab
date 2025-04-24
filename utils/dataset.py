@@ -36,25 +36,24 @@ class ClaimVerificationDataset(Dataset):
             return {key: fix_text(value) for key, value in self.data[index].items()}
         else:
             return self.data[index]
-        
-    def generate_subset(self, percentage: float = 0.05) -> 'ClaimVerificationDataset':
+
+    def generate_subset(self, percentage: float = 0.05) -> "ClaimVerificationDataset":
         subset_size = max(1, int(len(self) * percentage))
         diverse_subset = random.sample(self.data, subset_size)
         subdataset = copy.deepcopy(self)
         subdataset.data = diverse_subset
         return subdataset
-    
+
     def export_subset_to_csv(self, output_csv_path: str, percentage: float = 0.05):
         subset = self.generate_subset(percentage)
         try:
-            with open(output_csv_path, mode='w', newline='', encoding='utf8') as file:
+            with open(output_csv_path, mode="w", newline="", encoding="utf8") as file:
                 writer = csv.writer(file)
                 writer.writerow(["text", "claim"])
-                
+
                 for sample in subset.data:
                     writer.writerow([sample["text"], sample["claim"]])
-            
+
             print(f"Subset successfully exported to {output_csv_path}")
         except Exception as e:
             print(f"An error occurred while writing to CSV: {e}")
-
