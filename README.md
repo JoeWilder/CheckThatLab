@@ -22,6 +22,7 @@ pip install -r requirements.txt
 Our team's work contributed to the following paper:
 
 **UNH at CheckThat! 2025: Fine-tuning vs Prompting in Claim Extraction**
+
 arXiv: https://arxiv.org/abs/2509.06883
 
 ### Citation
