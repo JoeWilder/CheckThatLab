@@ -16,3 +16,13 @@ Finally, create a virtual environment and install the required dependencies:
 ```
 pip install -r requirements.txt
 ```
+
+## Publication
+
+Our team's work contributed to the following paper:
+
+**UNH at CheckThat! 2025: Fine-tuning vs Prompting in Claim Extraction**
+arXiv: https://arxiv.org/abs/2509.06883
+
+### Citation
+Wilder, Joe, et al. "UNH at CheckThat! 2025: Fine-tuning Vs Prompting in Claim Extraction." arXiv preprint arXiv:2509.06883 (2025).
